@@ -61,10 +61,11 @@ function tptn_single_activate() {
 
 		$sql = 'CREATE TABLE ' . $table_name . // phpcs:ignore WordPress.DB.DirectDatabaseQuery.SchemaChange
 			" (
+			id int(11) unsigned NOT NULL AUTO_INCREMENT,
 			postnumber bigint(20) NOT NULL,
 			cntaccess bigint(20) NOT NULL,
 			blog_id bigint(20) NOT NULL DEFAULT '1',
-			PRIMARY KEY  (postnumber, blog_id)
+			PRIMARY KEY  (id)
 			) $charset_collate;";
 
 		dbDelta( $sql );
@@ -75,11 +76,12 @@ function tptn_single_activate() {
 
 		$sql = 'CREATE TABLE ' . $table_name_daily . // phpcs:ignore WordPress.DB.DirectDatabaseQuery.SchemaChange
 			" (
+			id int(11) unsigned NOT NULL AUTO_INCREMENT,
 			postnumber bigint(20) NOT NULL,
 			cntaccess bigint(20) NOT NULL,
 			dp_date DATETIME NOT NULL,
 			blog_id bigint(20) NOT NULL DEFAULT '1',
-			PRIMARY KEY  (postnumber, dp_date, blog_id)
+			PRIMARY KEY  (id)
 			) $charset_collate;";
 
 		dbDelta( $sql );
@@ -99,18 +101,20 @@ function tptn_single_activate() {
 		$wpdb->query( $sql ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.DirectQuery
 
 		$sql = 'CREATE TABLE ' . $table_name . " (
+			id int(11) unsigned NOT NULL AUTO_INCREMENT,
 			postnumber bigint(20) NOT NULL,
 			cntaccess bigint(20) NOT NULL,
 			blog_id bigint(20) NOT NULL DEFAULT '1',
-			PRIMARY KEY  (postnumber, blog_id)
+			PRIMARY KEY  (id)
 			) $charset_collate;";
 
 		$sql .= 'CREATE TABLE ' . $table_name_daily . " (
+			id int(11) unsigned NOT NULL AUTO_INCREMENT,
 			postnumber bigint(20) NOT NULL,
 			cntaccess bigint(20) NOT NULL,
 			dp_date DATETIME NOT NULL,
 			blog_id bigint(20) NOT NULL DEFAULT '1',
-			PRIMARY KEY  (postnumber, dp_date, blog_id)
+			PRIMARY KEY  (id)
 			) $charset_collate;";
 
 		dbDelta( $sql );
